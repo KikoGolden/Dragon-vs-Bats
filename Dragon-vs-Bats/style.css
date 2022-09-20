@@ -1,0 +1,96 @@
+body{
+    padding: 0;
+    margin: 0;
+    background: url('images/bg.png');
+    background-size: cover;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    user-select: none;
+}
+
+/*info tab*/
+#info-wrapper{
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 7vh;
+    font-weight: bold;
+    color: #fff;
+    font-size: 38px;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 15;
+}
+#score{
+    width: 200px;
+}
+#timer{
+    width: 200px;
+}
+#logo{
+    width: 100px;
+}
+
+/*player*/
+#canvas{
+    position: fixed;
+    overflow: hidden;
+    top: 50vh;
+    z-index: 10;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    width: 170px;
+    height: 189px;
+}
+#image{
+    position: relative;
+}
+
+/*bat*/
+.bat-wrapper{
+    position: absolute;
+    width: 200px;
+    overflow: hidden; 
+    cursor: pointer;
+    z-index: 15;
+}
+.bat{
+    position: relative;
+    height: 150px;
+}
+.flyRight{
+    animation: flyRight 18s linear;
+}
+.flyLeft{
+    animation: flyLeft 18s linear;
+}
+
+/*fireball*/
+.fireball{
+    position: fixed;
+    width: 70px;
+}
+
+.fireballLeft{
+    animation: shootLeft 7s linear;
+}
+.fireballRight{
+    animation: shootRight 7s linear;
+}
+
+/*animations*/
+@keyframes shootRight {
+    to {left: 1000% ;}
+  }
+@keyframes shootLeft {
+    to {left: -1000% ;}
+  }
+
+  @keyframes flyRight {
+    from {left: -50%;}
+    to {left: 150% ;}
+  }
+  @keyframes flyLeft {
+    from {right: -50%;}
+    to {right: 150% ;}
+  }
