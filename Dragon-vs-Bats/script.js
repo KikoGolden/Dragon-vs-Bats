@@ -57,6 +57,9 @@ if (playerRight == 0) {
 
 animate();
 
+//shoot
+addEventListener('click', shoot);
+
 //walk funcs
 addEventListener('keydown', (e) => {
 
