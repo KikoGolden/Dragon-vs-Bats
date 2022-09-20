@@ -151,16 +151,19 @@ setInterval(function(){
     batEl.addEventListener('click', ()=>{
         let canShoot = false;
 
-        if ((batDirection == 1 && direction == 'L') && (batTop >= canvasTop - 10 && batTop <= canvasTop) && !halfFly || (batDirection == 2 && direction == 'R') && (batTop >= canvasTop - 10 && batTop <= canvasTop) && !halfFly) {
-            canShoot = true;
-        }
-
-        if (halfFly && (batDirection == 1 && direction == 'R') && (batTop >= canvasTop - 10 && batTop <= canvasTop) || halfFly && (batDirection == 2 && direction == 'L') && (batTop >= canvasTop - 10 && batTop <= canvasTop)) {
-            canShoot = true;
-        }
+        if (window.innerWidth > 800) {
+            if ((batDirection == 1 && direction == 'L') && (batTop >= canvasTop - 10 && batTop <= canvasTop) && !halfFly || (batDirection == 2 && direction == 'R') && (batTop >= canvasTop - 10 && batTop <= canvasTop) && !halfFly) {
+                canShoot = true;
+            }
+    
+            if (halfFly && (batDirection == 1 && direction == 'R') && (batTop >= canvasTop - 10 && batTop <= canvasTop) || halfFly && (batDirection == 2 && direction == 'L') && (batTop >= canvasTop - 10 && batTop <= canvasTop)) {
+                canShoot = true;
+            }
+        }else{canShoot = true}
+       
 
         if (canShoot && !shot) {
-            shoot();
+            if (window.innerWidth > 800){shoot()}
             batLeft = 0;
             batImg.src = 'images/bat-hit.png';
             kills++;
