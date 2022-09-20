@@ -1,11 +1,48 @@
 body{
     padding: 0;
     margin: 0;
-    background: url('images/bg.png');
-    background-size: cover;
     overflow: hidden;
     font-family: Arial, Helvetica, sans-serif;
     user-select: none;
+}
+#wrapper{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: url('images/bg.png');
+    background-size: cover;
+}
+
+/*hide class*/
+.hide{
+    display: none;
+}
+
+/*game over*/
+#game-over{
+    background: rgba(0, 255, 0, 0.486);
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    color: rgb(87, 5, 69);
+    font-weight: bold;
+    font-size: 30px;
+}
+#game-over h1{
+    padding-top: 30vh;
+}
+#game-over button{
+    padding: 10px 18px;
+    background-color: rgb(0, 162, 255);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 21px;
+}
+#game-over button:hover{
+    background-color: rgb(0, 81, 255);
+    cursor: pointer;
 }
 
 /*info tab*/

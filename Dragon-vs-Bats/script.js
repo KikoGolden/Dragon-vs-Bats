@@ -1,8 +1,11 @@
 let player = document.getElementById('image');
 let canvas = document.getElementById('canvas');
-let body = document.querySelector('body');
+let body = document.querySelector('#wrapper');
 let timer = document.getElementById('timer');
 let score = document.querySelector('#score span');
+let gameOver = document.getElementById('game-over');
+let game = document.getElementById('wrapper');
+let lastScore = document.querySelector('#game-over h2 span');
 
 //settings
 let canvasTop = 50;
@@ -26,6 +29,10 @@ setInterval(()=>{
  }
  if (seconds != 0) {
     seconds--;
+ }else{
+  game.classList.add('hide');
+  gameOver.classList.remove('hide');
+  lastScore.textContent = kills;
  }
  
 },1000);
@@ -103,6 +110,8 @@ function shoot()  {
 
 //summon bats
 setInterval(function(){
+    let shot = false;
+    let halfFly = false;
     let batLeft = 0;
     let batDirection = getRandomInt(1,2);
     let batTop = getRandomInt(10,90);
@@ -142,12 +151,15 @@ setInterval(function(){
     batEl.addEventListener('click', ()=>{
         let canShoot = false;
 
-        if ((batDirection == 1 && direction == 'L') && (batTop >= canvasTop - 10 && batTop <= canvasTop) || (batDirection == 2 && direction == 'R') && (batTop >= canvasTop - 10 && batTop <= canvasTop)) {
+        if ((batDirection == 1 && direction == 'L') && (batTop >= canvasTop - 10 && batTop <= canvasTop) && !halfFly || (batDirection == 2 && direction == 'R') && (batTop >= canvasTop - 10 && batTop <= canvasTop) && !halfFly) {
             canShoot = true;
         }
-        console.log(batTop > canvasTop);
 
-        if (canShoot) {
+        if (halfFly && (batDirection == 1 && direction == 'R') && (batTop >= canvasTop - 10 && batTop <= canvasTop) || halfFly && (batDirection == 2 && direction == 'L') && (batTop >= canvasTop - 10 && batTop <= canvasTop)) {
+            canShoot = true;
+        }
+
+        if (canShoot && !shot) {
             shoot();
             batLeft = 0;
             batImg.src = 'images/bat-hit.png';
@@ -155,15 +167,30 @@ setInterval(function(){
             
             score.innerText = kills;
             setTimeout(()=>{body.removeChild(batEl)},500);
+            shot = true;
         }
     });
       
 animateBat();
 
+setTimeout(()=>{halfFly = true;}, 8500);
+
 //remove bat
 setTimeout(()=>{body.removeChild(batEl)},17000);
 
 },batSpawnRate)
+
+//restart game
+function restartGame(){
+    game.classList.remove('hide');
+    gameOver.classList.add('hide');
+    timer.style.color = '#fff';
+
+    kills = 0;
+    seconds = 100;
+    
+    score.innerText = kills;
+}
 
 //random direction
 function getRandomInt(min, max) {

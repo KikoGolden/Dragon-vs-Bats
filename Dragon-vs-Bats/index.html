@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div id="wrapper">
         <div id="info-wrapper">
             <div id="timer">100</div>
             <img id="logo" src="images/logo.png" alt="">
@@ -18,6 +18,14 @@
         <div id="canvas">
              <img id="image" src="images/playerRight.png" alt="player">
         </div>
+
+    </div>
+
+    <div id="game-over" class="hide">
+        <h1>Game Over</h1>
+        <h2>Last Score: <span>0</span></h2>
+        <button onclick="restartGame()">Restart</button>
+   </div>
 
     <script src="script.js"></script>
 </body>
